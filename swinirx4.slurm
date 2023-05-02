@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=swinir_x3
+#SBATCH --job-name=swinir_x4
 #SBATCH --output=/scratch/s2630575/logs/slurm/%x_%A.out
 #SBATCH --partition=graceTST
 
