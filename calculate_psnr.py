@@ -51,7 +51,7 @@ def single_image():
     print(score)
 
 def size():
-    img = cv2.imread('../Real_ESRGAN/results/x2/pond_61x2_out.jpg')
+    img = cv2.imread('pond_61x2_out.jpg')
     h, w, c = img.shape
     print(f"Height and width of new image: {h}, {w}" )
 
