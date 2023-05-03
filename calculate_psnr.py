@@ -6,10 +6,11 @@ from skimage.metrics import structural_similarity as ssim
 
 n_image = 1000
 og_dir = 'test_AID'
-upsampled_dir = '../Real-ESRGAN/results/x2'
+upsampled_dir = '../Real-ESRGAN/results/x4'
   
 def main():
-    print("real esrgan x2")
+    total = 0
+    print("real esrgan x4")
     total_psnr = 0
     total_ssim = 0
     # Get list of files in each folder
@@ -27,6 +28,7 @@ def main():
         
         score = cv2.PSNR(og_img, up_img)
         print(score)
+        print(og_img, up_img)
         total_psnr += score
 
         # Convert the images to grayscale
@@ -35,6 +37,7 @@ def main():
         ssim_value = ssim(gray1, gray2)
         total_ssim += ssim_value
 
+        total += 1
         # Do something with the image pairs
         # For example, display them side by side
         #cv2.imshow('Image Pair', cv2.hconcat([og_img, up_img]))
@@ -43,6 +46,8 @@ def main():
     mean_ssim = total_ssim / n_image
     print(f"mean PSNR value is {mean_psnr} dB")
     print(f"mean SSIM value is {mean_ssim}")
+    print("total n:")
+    print(total)
 
 def single_image():
     og_img = cv2.imread('C:/Users/shara/OneDrive/Documents/Scriptie/AID/mod_AID/all_bicubic_2x_300/airport_24x2.jpg')
