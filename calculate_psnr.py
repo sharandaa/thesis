@@ -9,6 +9,7 @@ og_dir = 'test_AID'
 upsampled_dir = '../Real-ESRGAN/results/x2'
   
 def main():
+    print("real esrgan x2")
     total_psnr = 0
     total_ssim = 0
     # Get list of files in each folder
