@@ -3,7 +3,7 @@ from cv2 import dnn_superres
 import os
 
 image_dir = 'test_AID_x2'
-output_dir = 'ESPCN_x2'
+output_dir = 'espcnmodel/ESPCN_x2'
 
 # Create an SR object
 sr = dnn_superres.DnnSuperResImpl_create()
