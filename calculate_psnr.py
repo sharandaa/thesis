@@ -28,7 +28,7 @@ def main():
         
         score = cv2.PSNR(og_img, up_img)
         print(score)
-        print(og_img, up_img)
+        print(file1, file2)
         total_psnr += score
 
         # Convert the images to grayscale
