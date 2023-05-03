@@ -4,7 +4,7 @@ import numpy as np
 import os
 from skimage.metrics import structural_similarity as ssim
 
-n_image = 300 
+n_image = 10000
 og_dir = 'C:/Users/shara/OneDrive/Documents/Scriptie/AID/mod_AID/all_hr'
 upsampled_dir = 'C:/Users/shara/OneDrive/Documents/Scriptie/AID/mod_AID/Real-ESRGAN_resultx2'
   
@@ -50,6 +50,12 @@ def single_image():
     score = cv2.PSNR(og_img, up_img)
     print(score)
 
+def size():
+    img = cv2.imread('../Real_ESRGAN/results/x2/pond_61x2_out.jpg')
+    h, w, c = img.shape
+    print(f"Height and width of new image: {h}, {w}" )
+
 if __name__ == "__main__":
-    main()
+    #main()
     #single_image()
+    size()
