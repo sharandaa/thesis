@@ -4,7 +4,7 @@ import numpy as np
 import os
 from skimage.metrics import structural_similarity as ssim
 
-n_image = 10000
+n_image = 1000
 og_dir = 'test_AID'
 upsampled_dir = '../Real-ESRGAN/results/x2'
   
