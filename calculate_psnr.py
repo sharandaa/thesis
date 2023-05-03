@@ -5,8 +5,8 @@ import os
 from skimage.metrics import structural_similarity as ssim
 
 n_image = 10000
-og_dir = 'C:/Users/shara/OneDrive/Documents/Scriptie/AID/mod_AID/all_hr'
-upsampled_dir = 'C:/Users/shara/OneDrive/Documents/Scriptie/AID/mod_AID/Real-ESRGAN_resultx2'
+og_dir = 'test_AID'
+upsampled_dir = '../Real-ESRGAN/results/x2'
   
 def main():
     total_psnr = 0
@@ -56,6 +56,6 @@ def size():
     print(f"Height and width of new image: {h}, {w}" )
 
 if __name__ == "__main__":
-    #main()
+    main()
     #single_image()
-    size()
+    #size()
