@@ -13,6 +13,6 @@ for filename in os.listdir(img_dir):
 df = pd.DataFrame.from_dict(label_dict)
 
 print(df.head())
-print(df)
+#print(df)
 
 df.to_csv("labels/train_labels.csv", index = False)
