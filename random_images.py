@@ -97,9 +97,9 @@ def combine():
 
 print("Done!")
 
-src_all = "C:/Users/shara/OneDrive/Documents/Scriptie/AID/AID/All"
-train_folder = ""
-test_folder = "C:/Users/shara/OneDrive/Documents/Scriptie/AID/AID/test_AID"
+src_all = "C:/Users/shara/OneDrive/Documents/Scriptie/datasets/All_AID"
+train_folder = "C:/Users/shara/OneDrive/Documents/Scriptie/datasets/train_AID"
+#test_folder = "C:/Users/shara/OneDrive/Documents/Scriptie/AID/AID/test_AID"
 
 def split():
     pics_list = [f for f in os.listdir(src_all) if f.endswith(".jpg") or f.endswith(".jpeg") or f.endswith(".png")]
@@ -111,9 +111,9 @@ def split():
     print('Training set:', train_filenames)
     print('Testing set:', test_filenames)
 
-    for pic in test_filenames:
+    for pic in train_filenames:
         src_path = os.path.join(src_all, pic)
-        dest_path = os.path.join(test_folder, pic)
+        dest_path = os.path.join(train_folder, pic)
         shutil.copy(src_path, dest_path)
 
 if __name__ == "__main__":
