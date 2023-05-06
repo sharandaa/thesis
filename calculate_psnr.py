@@ -7,7 +7,7 @@ from natsort import natsorted
 
 n_image = 1000
 og_dir = 'test_AID'
-upsampled_dir = '../SwinIR/results/swinir_classical_sr_x3'
+upsampled_dir = '../Real-ESRGAN/results/x4'
   
 def main():
     total = 0
