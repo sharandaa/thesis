@@ -2,8 +2,8 @@ import cv2
 from cv2 import dnn_superres
 import os
 
-image_dir = 'test_AID_x2'
-output_dir = 'espcnmodel/ESPCN_x2'
+image_dir = 'test_AID_x3'
+output_dir = 'espcnmodel/ESPCN_x3'
 
 # Create an SR object
 sr = dnn_superres.DnnSuperResImpl_create()
@@ -12,11 +12,11 @@ sr = dnn_superres.DnnSuperResImpl_create()
 #image = cv2.imread('./mod_AID/downsample_2x_upscale_2x/airport_24x2.jpg')
 
 # Read the desired model
-path = "ESPCN_x2.pb"
+path = "ESPCN_x3.pb"
 sr.readModel(path)
 
 # Set the desired model and scale to get correct pre- and post-processing
-sr.setModel("espcn", 2)
+sr.setModel("espcn", 3)
 
 # Upscale the image
 #result = sr.upsample(image)
@@ -34,7 +34,7 @@ for _, _, image_names in os.walk(image_dir):
                 filepath = os.path.join(image_dir, image_name)
                 n = os.path.splitext(image_name)[0]
                 #print(n)
-                b = n + '_ESPCNx2' + '.jpg'
+                b = n + '_ESPCNx3' + '.jpg'
                 #lr_name = image_name + '_lr'
                 # get image write path
                 dstpath = os.path.join(output_dir, b)

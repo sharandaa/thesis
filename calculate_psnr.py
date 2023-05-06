@@ -18,8 +18,8 @@ def main():
     upsampled_files = os.listdir(upsampled_dir)
 
     # Sort the files alphabetically to match the pairs
-    og_files.sort()
-    upsampled_files.sort()
+    #og_files.sort()
+    #upsampled_files.sort()
 
     # Loop over the files in the folders and read the image pairs
     for file1, file2 in zip(og_files, upsampled_files):
