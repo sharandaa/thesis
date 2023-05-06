@@ -28,8 +28,8 @@ def main():
         up_img = cv2.imread(os.path.join(upsampled_dir, file2))
         
         score = cv2.PSNR(og_img, up_img)
-        print(score)
-        print(file1, file2)
+        #print(score)
+        #print(file1, file2)
         total_psnr += score
 
         # Convert the images to grayscale
