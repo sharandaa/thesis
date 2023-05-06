@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import os
 from skimage.metrics import structural_similarity as ssim
+from natsort import natsorted
 
 n_image = 1000
 og_dir = 'test_AID'
@@ -18,8 +19,8 @@ def main():
     upsampled_files = os.listdir(upsampled_dir)
 
     # Sort the files alphabetically to match the pairs
-    #og_files.sort()
-    #upsampled_files.sort()
+    og_files = natsorted(og_files)
+    upsampled_files = natsorted(upsampled_files)
 
     # Loop over the files in the folders and read the image pairs
     for file1, file2 in zip(og_files, upsampled_files):
@@ -57,9 +58,16 @@ def single_image():
     print(score)
 
 def size():
+    """
     img = cv2.imread('pond_61x2_out.jpg')
     h, w, c = img.shape
     print(f"Height and width of new image: {h}, {w}" )
+    """
+    og_files = os.listdir("test_AID")
+    print(og_files)
+    natsort_file_names = natsorted(og_files)
+    print(natsort_file_names)
+
 
 if __name__ == "__main__":
     main()
