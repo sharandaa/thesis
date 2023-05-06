@@ -6,7 +6,7 @@ from skimage.metrics import structural_similarity as ssim
 
 n_image = 1000
 og_dir = 'test_AID'
-upsampled_dir = '../Real-ESRGAN/results/x4'
+upsampled_dir = 'espcnmodel/ESPCN_x2'
   
 def main():
     total = 0
