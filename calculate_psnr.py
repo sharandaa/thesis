@@ -4,52 +4,75 @@ import numpy as np
 import os
 from skimage.metrics import structural_similarity as ssim
 from natsort import natsorted
+import matplotlib.pyplot as plt
 
 n_image = 1000
 og_dir = 'test_AID'
-upsampled_dir = 'espcnmodel/ESPCN_x3'
+upsampled_dirs = ['espcnmodel/ESPCN_x3', '../Real-ESRGAN/results/x2', '../SwinIR/results/swinir_classical_sr_x2', '../swin2sr/results/swin2sr_classical_sr_x2']
+names = ['ESPCN', 'Real-ESRGAN', 'SwinIR', 'Swin2SR']
+psnr_dict = {}
   
 def main():
-    total = 0
-    print("real esrgan x4")
-    total_psnr = 0
-    total_ssim = 0
-    # Get list of files in each folder
-    og_files = os.listdir(og_dir)
-    upsampled_files = os.listdir(upsampled_dir)
+    for i in range(4):
+        upsampled_dir = upsampled_dirs[i] 
+        psnr_list = []
+        total = 0
+        print("real esrgan x4")
+        total_psnr = 0
+        total_ssim = 0
+        # Get list of files in each folder
+        og_files = os.listdir(og_dir)
+        upsampled_files = os.listdir(upsampled_dir)
 
-    # Sort the files alphabetically to match the pairs
-    og_files = natsorted(og_files)
-    upsampled_files = natsorted(upsampled_files)
+        # Sort the files alphabetically to match the pairs
+        og_files = natsorted(og_files)
+        upsampled_files = natsorted(upsampled_files)
 
-    # Loop over the files in the folders and read the image pairs
-    for file1, file2 in zip(og_files, upsampled_files):
-        og_img = cv2.imread(os.path.join(og_dir, file1))
-        up_img = cv2.imread(os.path.join(upsampled_dir, file2))
+        # Loop over the files in the folders and read the image pairs
+        for file1, file2 in zip(og_files, upsampled_files):
+            og_img = cv2.imread(os.path.join(og_dir, file1))
+            up_img = cv2.imread(os.path.join(upsampled_dir, file2))
+            
+            #print(file1, file2)
+            score = cv2.PSNR(og_img, up_img)
+            #print(score)
+            psnr_list.append(score)
+            #print(file1, file2)
+            total_psnr += score
+
+            # Convert the images to grayscale
+            gray1 = cv2.cvtColor(og_img, cv2.COLOR_BGR2GRAY)
+            gray2 = cv2.cvtColor(up_img, cv2.COLOR_BGR2GRAY)
+            ssim_value = ssim(gray1, gray2)
+            total_ssim += ssim_value
+
+            total += 1
+            # Do something with the image pairs
+            # For example, display them side by side
+            #cv2.imshow('Image Pair', cv2.hconcat([og_img, up_img]))
         
-        print(file1, file2)
-        score = cv2.PSNR(og_img, up_img)
-        print(score)
-        #print(file1, file2)
-        total_psnr += score
+        mean_psnr = total_psnr / n_image
+        mean_ssim = total_ssim / n_image
+        print(f"mean PSNR value is {mean_psnr} dB")
+        print(f"mean SSIM value is {mean_ssim}")
+        print("total n:")
+        print(total)
 
-        # Convert the images to grayscale
-        gray1 = cv2.cvtColor(og_img, cv2.COLOR_BGR2GRAY)
-        gray2 = cv2.cvtColor(up_img, cv2.COLOR_BGR2GRAY)
-        ssim_value = ssim(gray1, gray2)
-        total_ssim += ssim_value
+        psnr_dict[names[i]] = psnr_list
 
-        total += 1
-        # Do something with the image pairs
-        # For example, display them side by side
-        #cv2.imshow('Image Pair', cv2.hconcat([og_img, up_img]))
-    
-    mean_psnr = total_psnr / n_image
-    mean_ssim = total_ssim / n_image
-    print(f"mean PSNR value is {mean_psnr} dB")
-    print(f"mean SSIM value is {mean_ssim}")
-    print("total n:")
-    print(total)
+    group_data = [values for key, values in psnr_dict.items()]
+
+    # Create a box plot
+    fig, ax = plt.subplots()
+    ax.boxplot(group_data)
+
+    # Add labels and title
+    ax.set_xticklabels(psnr_dict.keys())
+    #ax.set_xlabel('Groups')
+    ax.set_ylabel('PSNR (dB)')
+    ax.set_title('PSNR scores of SR with scale x2')
+
+    plt.savefig("psnrplot.pdf", format="pdf", bbox_inches="tight")
 
 def single_image():
     og_img = cv2.imread('C:/Users/shara/OneDrive/Documents/Scriptie/AID/mod_AID/all_bicubic_2x_300/airport_24x2.jpg')
