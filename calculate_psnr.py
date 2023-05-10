@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 n_image = 1000
 og_dir = 'test_AID'
-upsampled_dirs = ['espcnmodel/ESPCN_x3', '../Real-ESRGAN/results/x2', '../SwinIR/results/swinir_classical_sr_x2', '../swin2sr/results/swin2sr_classical_sr_x2']
+upsampled_dirs = ['espcnmodel/ESPCN_x2', '../Real-ESRGAN/results/x2', '../SwinIR/results/swinir_classical_sr_x2', '../swin2sr/results/swin2sr_classical_sr_x2']
 names = ['ESPCN', 'Real-ESRGAN', 'SwinIR', 'Swin2SR']
 psnr_dict = {}
   
