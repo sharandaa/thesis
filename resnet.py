@@ -17,7 +17,7 @@ from sklearn.model_selection import train_test_split
 
 print(os.getcwd())
 # reading CSV file
-data = pd.read_csv("/labels/train_labels.csv")
+data = pd.read_csv("/scratch/s2630575/thesis/labels/train_labels.csv")
 
 # Split train set into train and validation sets
 train_df, valid_df = train_test_split(data, test_size=0.2, random_state=35)
