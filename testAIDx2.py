@@ -32,7 +32,7 @@ class Builder(tfds.core.GeneratorBasedBuilder):
 
   def _split_generators(self, dl_manager: tfds.download.DownloadManager):
     """Returns SplitGenerators."""
-    extracted_path = dl_manager.manual_dir/'datasets'
+    extracted_path = dl_manager.manual_dir
     return {"test": self._generate_examples(hr_path=extracted_path/'test_AID_tiff', lr_path=extracted_path/'test_AID_x2_tiff')}
 
   def _generate_examples(self, lr_path, hr_path):
