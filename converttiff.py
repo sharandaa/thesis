@@ -22,8 +22,8 @@ def convert_jpg_to_tiff(input_folder, output_folder):
             img.save(tiff_path, format='TIFF')
 
 # Specify the input and output folders
-input_folder = '../datasets/test_AID'
-output_folder = '../datasets/test_AID_tiff'
+input_folder = '../datasets/test_AID_x2'
+output_folder = '../datasets/test_AID_x2_tiff'
 
 # Call the function to convert JPG files to TIFF
 convert_jpg_to_tiff(input_folder, output_folder)
