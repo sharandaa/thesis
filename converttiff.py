@@ -9,7 +9,7 @@ def convert_jpg_to_tiff(input_folder, output_folder):
     for jpg_file in jpg_files:
         # Remove the "x2" part from the filename
         jpg_name = os.path.splitext(jpg_file)[0]
-        jpg_name = jpg_name.replace("x2", "")
+        jpg_name = jpg_name.replace("x3", "")
 
         # Open the JPG file
         jpg_path = os.path.join(input_folder, jpg_file)
@@ -22,8 +22,8 @@ def convert_jpg_to_tiff(input_folder, output_folder):
             img.save(tiff_path, format='TIFF')
 
 # Specify the input and output folders
-input_folder = '../datasets/test_AID_x2'
-output_folder = '../datasets/test_AID_x2_tiff'
+input_folder = '../datasets/test_AID_x3'
+output_folder = '../datasets/test_AID_x3_tiff'
 
 # Call the function to convert JPG files to TIFF
 convert_jpg_to_tiff(input_folder, output_folder)
