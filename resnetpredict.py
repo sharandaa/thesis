@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 
 num_classes = 30
 
-test_data = pd.read_csv("/scratch/s2630575/thesis/labels/test_labels.csv")
+test_data = pd.read_csv("/labels/test_labels.csv")
 true_labels = test_data['label'].tolist()
 
 test_datagen = ImageDataGenerator(
@@ -33,6 +33,8 @@ test_set = test_datagen.flow_from_dataframe(
     batch_size=32,
     class_mode='categorical',
 )
+
+class_indices = test_set.class_indices
 
 base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
 
