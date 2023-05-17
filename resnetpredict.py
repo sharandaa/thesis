@@ -53,3 +53,31 @@ model.load_weights("best_resnet.h5")
 
 prediction = model.predict(test_set)
 
+prediction = np.argmax(prediction, axis = 1)
+
+# Reverse the key-value pairs of the dictionary
+labels_reverse = {v: k for k, v in class_indices.items()}
+
+# Use the array elements as keys to retrieve their corresponding values (labels)
+pred_labels = [labels_reverse[i] for i in prediction]
+
+print(pred_labels)
+print(true_labels)
+
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+# compute accuracy
+accuracy = accuracy_score(true_labels, pred_labels)
+print('Accuracy:', accuracy)
+
+# compute precision
+precision = precision_score(true_labels, pred_labels, average='macro')
+print('Precision:', precision)
+
+# compute recall
+recall = recall_score(true_labels, pred_labels, average='macro')
+print('Recall:', recall)
+
+# compute F1 score
+f1 = f1_score(true_labels, pred_labels, average='macro')
+print('F1 score:', f1)
