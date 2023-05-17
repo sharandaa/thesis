@@ -3,12 +3,13 @@ from pathlib import Path
 import numpy as np
 import tensorflow as tf
 import tensorflow_datasets.public_api as tfds
-import tiffile as tiff
+import tifffile as tiff
 
 
 class Builder(tfds.core.GeneratorBasedBuilder):
   """DatasetBuilder for my_dataset dataset."""
 
+  MANUAL_DOWNLOAD_INSTRUCTIONS = """ test """
   VERSION = tfds.core.Version('1.0.0')
   RELEASE_NOTES = {
       '1.0.0': 'Initial release.',

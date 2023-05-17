@@ -4,4 +4,4 @@
 #SBATCH --partition=graceTST
 
 cd ..
-python testimport.py
+python -u testimport.py> /scratch/s2630575/logs/python_output/tfdstest.txt
