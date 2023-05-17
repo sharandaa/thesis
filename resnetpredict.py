@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 
 num_classes = 30
 
-test_data = pd.read_csv("/labels/test_labels.csv")
+test_data = pd.read_csv("/scratch/s2630575/thesis/labels/test_labels.csv")
 true_labels = test_data['label'].tolist()
 
 test_datagen = ImageDataGenerator(
@@ -26,7 +26,7 @@ test_datagen = ImageDataGenerator(
 
 test_set = test_datagen.flow_from_dataframe(
     dataframe=test_data,  # your training dataframe
-    directory='test_AID',  # directory where your images are located
+    directory='/scratch/s2630575/thesis/test_AID',  # directory where your images are located
     x_col='filename',
     y_col='label',
     target_size=(224, 224),
@@ -51,7 +51,7 @@ model = Model(inputs=base_model.input, outputs=predictions)
 # Compile the model
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-model.load_weights("best_resnet.h5")
+model.load_weights("/scratch/s2630575/thesis/best_resnet.h5")
 
 prediction = model.predict(test_set)
 
