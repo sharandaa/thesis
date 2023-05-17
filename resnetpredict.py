@@ -11,7 +11,7 @@ from tensorflow.keras.layers import Dense, Flatten, GlobalAveragePooling2D, Drop
 from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from tensorflow.keras.models import Model
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
 num_classes = 30
