@@ -14,7 +14,7 @@ from tensorflow.keras.models import Model
 from tensorflow import keras
 #import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from PIL import Image
+#from PIL import Image
 
 num_classes = 30
 
