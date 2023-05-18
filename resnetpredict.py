@@ -11,6 +11,7 @@ from tensorflow.keras.layers import Dense, Flatten, GlobalAveragePooling2D, Drop
 from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from tensorflow.keras.models import Model
+from tensorflow import keras
 #import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
@@ -35,7 +36,7 @@ test_set = test_datagen.flow_from_dataframe(
 )
 
 class_indices = test_set.class_indices
-
+"""
 base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
 
 # Add a global average pooling layer and a dense output layer
@@ -52,6 +53,8 @@ model = Model(inputs=base_model.input, outputs=predictions)
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 model.load_weights("/scratch/s2630575/thesis/best_resnet.h5")
+"""
+model = keras.models.load_model("best_resnetmodel.h5")
 
 prediction = model.predict(test_set)
 
