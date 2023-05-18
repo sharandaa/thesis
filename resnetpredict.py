@@ -56,14 +56,14 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 model.load_weights("/scratch/s2630575/thesis/best_resnet.h5")
 """
 model = keras.models.load_model("best_resnetmodel.h5")
-
+print('onder model')
 prediction = model.predict(test_set)
-
+print('onder model.predict')
 prediction = np.argmax(prediction, axis = 1)
-
+print('onder prediction np argmax')
 # Reverse the key-value pairs of the dictionary
 labels_reverse = {v: k for k, v in class_indices.items()}
-
+print('onder labels_reverse')
 # Use the array elements as keys to retrieve their corresponding values (labels)
 pred_labels = [labels_reverse[i] for i in prediction]
 
