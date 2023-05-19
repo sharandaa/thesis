@@ -18,7 +18,7 @@ from sklearn.model_selection import train_test_split
 
 num_classes = 30
 
-test_data = pd.read_csv("/scratch/s2630575/thesis/labels/test_labels.csv")
+test_data = pd.read_csv("/scratch/s2630575/labels/test_labels_swinir.csv")
 true_labels = test_data['label'].tolist()
 
 test_datagen = ImageDataGenerator(
@@ -28,7 +28,7 @@ test_datagen = ImageDataGenerator(
 
 test_set = test_datagen.flow_from_dataframe(
     dataframe=test_data,  # your training dataframe
-    directory='/scratch/s2630575/thesis/test_AID',  # directory where your images are located
+    directory='/home/s2630575/SwinIR/results/swinir_real_sr_x2',  # directory where your images are located
     x_col='filename',
     y_col='label',
     target_size=(224, 224),
@@ -56,20 +56,15 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 
 model.load_weights("/scratch/s2630575/thesis/best_resnet.h5")
 
-#model = keras.models.load_model("best_resnetmodel.h5")
-print('onder model')
-#print(model.summary())
-#model.evaluate(test_set)
-#print('onder evaluate')
 prediction = model.predict(test_set)
-print('onder model.predict')
-prediction = np.argmax(prediction, axis = 1)
-print('onder prediction np argmax')
+
+predictiontop1 = np.argmax(prediction, axis = 1)
+
 # Reverse the key-value pairs of the dictionary
 labels_reverse = {v: k for k, v in class_indices.items()}
-print('onder labels_reverse')
+
 # Use the array elements as keys to retrieve their corresponding values (labels)
-pred_labels = [labels_reverse[i] for i in prediction]
+pred_labels = [labels_reverse[i] for i in predictiontop1]
 
 print(pred_labels)
 print(true_labels)
@@ -91,3 +86,15 @@ print('Recall:', recall)
 # compute F1 score
 f1 = f1_score(true_labels, pred_labels, average='macro')
 print('F1 score:', f1)
+
+from sklearn.metrics import top_k_accuracy_score
+
+#prediction = model.predict(test_set)
+predictiontop5 = np.argsort(prediction, axis=1)[:, ::-1]  # Sort the predictions in descending order
+
+# Assuming actual_labels contains the true labels for the test set
+true_labelsindex = test_set.classes  # Replace with your actual labels
+
+# Calculate the top 5 accuracy
+top5_accuracy = top_k_accuracy_score(true_labelsindex, prediction, k=5)
+print('top 5 accuracy:', top5_accuracy)
