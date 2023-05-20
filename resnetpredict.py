@@ -18,7 +18,7 @@ from sklearn.model_selection import train_test_split
 
 num_classes = 30
 
-test_data = pd.read_csv("/scratch/s2630575/labels/test_labels_swin2sr.csv.csv")
+test_data = pd.read_csv("/scratch/s2630575/labels/test_labels_swin2sr.csv")
 true_labels = test_data['label'].tolist()
 
 test_datagen = ImageDataGenerator(
