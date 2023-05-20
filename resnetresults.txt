@@ -1,0 +1,12 @@
+test set:
+Accuracy: 0.837
+Precision: 0.8528288177717582
+Recall: 0.8415229667617302
+F1 score: 0.8273998412853815
+
+SwinIR set:
+top 1 Accuracy: 0.804
+Precision: 0.835341272925771
+Recall: 0.8079828940871743
+F1 score: 0.7877772301713386
+top 5 accuracy: 0.969

@@ -18,7 +18,7 @@ from sklearn.model_selection import train_test_split
 
 num_classes = 30
 
-test_data = pd.read_csv("/scratch/s2630575/labels/test_labels_swinir.csv")
+test_data = pd.read_csv("/scratch/s2630575/thesis/labels/test_labels.csv")
 true_labels = test_data['label'].tolist()
 
 test_datagen = ImageDataGenerator(
@@ -28,7 +28,7 @@ test_datagen = ImageDataGenerator(
 
 test_set = test_datagen.flow_from_dataframe(
     dataframe=test_data,  # your training dataframe
-    directory='/home/s2630575/SwinIR/results/swinir_real_sr_x2',  # directory where your images are located
+    directory='/scratch/s2630575/thesis/test_AID',  # directory where your images are located
     x_col='filename',
     y_col='label',
     target_size=(224, 224),
@@ -69,7 +69,7 @@ pred_labels = [labels_reverse[i] for i in predictiontop1]
 print(pred_labels)
 print(true_labels)
 
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
 
 # compute accuracy
 accuracy = accuracy_score(true_labels, pred_labels)
@@ -98,3 +98,6 @@ true_labelsindex = test_set.classes  # Replace with your actual labels
 # Calculate the top 5 accuracy
 top5_accuracy = top_k_accuracy_score(true_labelsindex, prediction, k=5)
 print('top 5 accuracy:', top5_accuracy)
+
+class_report = classification_report(true_labels, pred_labels)
+print(class_report)

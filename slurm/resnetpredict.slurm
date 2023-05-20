@@ -4,5 +4,4 @@
 #SBATCH --partition=graceADA
 
 cd ..
-pwd
-python -u resnetpredict.py> /scratch/s2630575/logs/python_output/resnetswinirpredict.txt
+python -u resnetpredict.py> /scratch/s2630575/logs/python_output/resnetpredict.txt
