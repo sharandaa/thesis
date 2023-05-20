@@ -18,7 +18,7 @@ from sklearn.model_selection import train_test_split
 
 num_classes = 30
 
-test_data = pd.read_csv("/scratch/s2630575/labels/test_labels_swin2sr.csv")
+test_data = pd.read_csv("/scratch/s2630575/labels/test_labels_realesrgan.csv")
 true_labels = test_data['label'].tolist()
 
 test_datagen = ImageDataGenerator(
@@ -28,7 +28,7 @@ test_datagen = ImageDataGenerator(
 
 test_set = test_datagen.flow_from_dataframe(
     dataframe=test_data,  # your training dataframe
-    directory='/home/s2630575/swin2sr/results/swin2sr_real_sr_x4',  # directory where your images are located
+    directory='/home/s2630575/Real-ESRGAN/results/realx2',  # directory where your images are located
     x_col='filename',
     y_col='label',
     target_size=(224, 224),
