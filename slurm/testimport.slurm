@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=tfds
-#SBATCH --output=/scratch/s2630575/logs/slurm/tfdstest2.out
+#SBATCH --output=/scratch/s2630575/logs/slurm/tfdstest3.out
 #SBATCH --partition=graceTST
 
 cd ..
