@@ -6,7 +6,7 @@ import tensorflow_datasets.public_api as tfds
 import tifffile as tiff
 
 
-class aidtestx3(tfds.core.GeneratorBasedBuilder):
+class aidtestx4(tfds.core.GeneratorBasedBuilder):
   """DatasetBuilder for my_dataset dataset."""
 
   MANUAL_DOWNLOAD_INSTRUCTIONS = """ test """
@@ -21,7 +21,7 @@ class aidtestx3(tfds.core.GeneratorBasedBuilder):
       builder=self,
       features=tfds.features.FeaturesDict({
         'hr': tfds.features.Image(shape=[600, 600, 3]),
-        'lr': tfds.features.Image(shape=[200, 200, 3])
+        'lr': tfds.features.Image(shape=[150, 150, 3])
       }),
       supervised_keys=("lr", "hr")
       # If there's a common (input, target) tuple from the
@@ -34,7 +34,7 @@ class aidtestx3(tfds.core.GeneratorBasedBuilder):
   def _split_generators(self, dl_manager: tfds.download.DownloadManager):
     """Returns SplitGenerators."""
     extracted_path = dl_manager.manual_dir
-    return {"test": self._generate_examples(hr_path=extracted_path/'test_AID_tiff', lr_path=extracted_path/'test_AID_x3_tiff')}
+    return {"test": self._generate_examples(hr_path=extracted_path/'test_AID_tiff', lr_path=extracted_path/'test_AID_x4_tiff')}
 
   def _generate_examples(self, lr_path, hr_path):
     """Yields examples."""
