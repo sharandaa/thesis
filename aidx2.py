@@ -6,7 +6,7 @@ import tensorflow_datasets.public_api as tfds
 import tifffile as tiff
 
 
-class Builder(tfds.core.GeneratorBasedBuilder):
+class aidx2(tfds.core.GeneratorBasedBuilder):
   """DatasetBuilder for my_dataset dataset."""
 
   MANUAL_DOWNLOAD_INSTRUCTIONS = """ test """
