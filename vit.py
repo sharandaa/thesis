@@ -2,13 +2,10 @@ import os
 import numpy as np
 import tensorflow as tf
 import pandas as pd
-from tensorflow.keras.applications.resnet50 import ResNet50
 from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.resnet50 import preprocess_input, decode_predictions
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Flatten, GlobalAveragePooling2D, Dropout, AveragePooling2D, BatchNormalization
-from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from tensorflow.keras.models import Model
 import matplotlib.pyplot as plt
@@ -30,17 +27,15 @@ num_classes = len(data['label'].unique())
 train_datagen = ImageDataGenerator(
     rescale=1./255,
     rotation_range=20,
-		zoom_range=0.15,
-		width_shift_range=0.2,
-		height_shift_range=0.2,
-		shear_range=0.15,
-		horizontal_flip=True,
-    preprocessing_function=preprocess_input
+    zoom_range=0.15,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    shear_range=0.15,
+    horizontal_flip=True
 )
 
 valid_datagen = ImageDataGenerator(
     rescale=1./255,
-    preprocessing_function=preprocess_input
 )
 
 # load images from directory and create generators
