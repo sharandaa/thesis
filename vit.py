@@ -94,7 +94,7 @@ earlystop = EarlyStopping(monitor='val_loss', mode='min', patience=10, verbose=1
 history = model.fit_generator(
         train_generator,
         steps_per_epoch= train_generator.samples // train_generator.batch_size, #len(train_generator),
-        epochs=5,
+        epochs=60,
         callbacks=[checkpoint, earlystop],
         validation_steps = validation_generator.samples // validation_generator.batch_size, #len(validation_generator),
         validation_data=validation_generator)
