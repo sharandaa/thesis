@@ -13,13 +13,27 @@ from sklearn.model_selection import train_test_split
 from vit_keras import vit
 import tensorflow_addons as tfa
 
+import random as rn
+from tensorflow.compat.v1.keras import backend as K
+
+# https://stackoverflow.com/questions/61368342/how-can-i-get-reproducible-results-in-keras-for-a-convolutional-neural-network-u
+tf.keras.backend.clear_session()
+
+seed_num = 35
+os.environ['PYTHONHASHSEED'] = '0'
+np.random.seed(seed_num)
+rn.seed(seed_num)
+tf.random.set_seed(seed_num)
+session_conf = tf.compat.v1.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
+sess = tf.compat.v1.Session(graph=tf.compat.v1.get_default_graph(), config=session_conf)
+K.set_session(sess)
 
 print(os.getcwd())
 # reading CSV file
 data = pd.read_csv("/scratch/s2630575/thesis/labels/train_labels.csv")
 
 # Split train set into train and validation sets
-train_df, valid_df = train_test_split(data, test_size=0.2, random_state=35)
+train_df, valid_df = train_test_split(data, test_size=0.2, random_state=seed_num)
 
 num_classes = len(data['label'].unique())
 
@@ -45,8 +59,9 @@ train_generator = train_datagen.flow_from_dataframe(
     x_col='filename',
     y_col='label',
     target_size=(256, 256),
-    batch_size=32,
-    class_mode='categorical'
+    batch_size=64,
+    class_mode='categorical',
+    seed=seed_num
 )
 
 validation_generator = valid_datagen.flow_from_dataframe(
@@ -55,8 +70,9 @@ validation_generator = valid_datagen.flow_from_dataframe(
     x_col='filename',
     y_col='label',
     target_size=(256, 256),
-    batch_size=32,
-    class_mode='categorical'
+    batch_size=64,
+    class_mode='categorical',
+    seed=seed_num
 )
 
 class_indices = train_generator.class_indices
@@ -66,7 +82,7 @@ print(label_names)
 
 image_size = 256
 
-vit_model = vit.vit_b16(
+vit_model = vit.vit_b32(
     image_size = image_size,
     activation = 'softmax',
     pretrained = True,
@@ -88,8 +104,8 @@ model = Model(inputs=vit_model.input, outputs=predictions)
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 # Set up callbacks to save the best model weights and stop training early if validation loss stops improving
-checkpoint = ModelCheckpoint('best_vit.h5', save_best_only=True, save_weights_only=True, monitor='val_loss', mode='min', verbose=1)
-earlystop = EarlyStopping(monitor='val_loss', mode='min', patience=10, verbose=1)
+checkpoint = ModelCheckpoint('best_vit35.h5', save_best_only=True, save_weights_only=True, monitor='val_loss', mode='min', verbose=1)
+earlystop = EarlyStopping(monitor='val_loss', mode='min', patience=5, verbose=1)
 
 history = model.fit_generator(
         train_generator,
