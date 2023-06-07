@@ -19,7 +19,7 @@ from tensorflow.compat.v1.keras import backend as K
 # https://stackoverflow.com/questions/61368342/how-can-i-get-reproducible-results-in-keras-for-a-convolutional-neural-network-u
 tf.keras.backend.clear_session()
 
-seed_num = 35
+seed_num = 36
 os.environ['PYTHONHASHSEED'] = '0'
 np.random.seed(seed_num)
 rn.seed(seed_num)
@@ -59,7 +59,7 @@ train_generator = train_datagen.flow_from_dataframe(
     x_col='filename',
     y_col='label',
     target_size=(256, 256),
-    batch_size=64,
+    batch_size=32,
     class_mode='categorical',
     seed=seed_num
 )
@@ -70,7 +70,7 @@ validation_generator = valid_datagen.flow_from_dataframe(
     x_col='filename',
     y_col='label',
     target_size=(256, 256),
-    batch_size=64,
+    batch_size=32,
     class_mode='categorical',
     seed=seed_num
 )
@@ -82,7 +82,7 @@ print(label_names)
 
 image_size = 256
 
-vit_model = vit.vit_b32(
+vit_model = vit.vit_b16(
     image_size = image_size,
     activation = 'softmax',
     pretrained = True,
@@ -104,7 +104,7 @@ model = Model(inputs=vit_model.input, outputs=predictions)
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 # Set up callbacks to save the best model weights and stop training early if validation loss stops improving
-checkpoint = ModelCheckpoint('best_vit35.h5', save_best_only=True, save_weights_only=True, monitor='val_loss', mode='min', verbose=1)
+checkpoint = ModelCheckpoint('best_vit36.h5', save_best_only=True, save_weights_only=True, monitor='val_loss', mode='min', verbose=1)
 earlystop = EarlyStopping(monitor='val_loss', mode='min', patience=5, verbose=1)
 
 history = model.fit_generator(
