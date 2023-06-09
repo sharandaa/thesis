@@ -61,7 +61,7 @@ train_generator = train_datagen.flow_from_dataframe(
     y_col='label',
     target_size=(224, 224),
     batch_size=64,
-    class_mode='categorical'
+    class_mode='categorical',
     seed=seed_num
 )
 
@@ -72,7 +72,7 @@ validation_generator = valid_datagen.flow_from_dataframe(
     y_col='label',
     target_size=(224, 224),
     batch_size=64,
-    class_mode='categorical'
+    class_mode='categorical',
     seed=seed_num
 )
 
