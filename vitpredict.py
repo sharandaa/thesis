@@ -41,7 +41,7 @@ class_indices = test_set.class_indices
 
 image_size = 256
 
-vit_model = vit.vit_b16(
+vit_model = vit.vit_b32(
     image_size = image_size,
     activation = 'softmax',
     pretrained = True,
