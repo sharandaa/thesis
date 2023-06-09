@@ -11,7 +11,7 @@ from tensorflow.keras.layers import Dense, Flatten, GlobalAveragePooling2D, Drop
 from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from tensorflow.keras.models import Model
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
 import random as rn
@@ -109,6 +109,7 @@ history = model.fit_generator(
         validation_steps = validation_generator.samples // validation_generator.batch_size, #len(validation_generator),
         validation_data=validation_generator)
 
+"""
 plt.plot(history.history['loss'], label='train loss')
 plt.plot(history.history['val_loss'], label='val loss')
 plt.legend()
@@ -118,3 +119,4 @@ plt.plot(history.history['accuracy'], label = 'train accuracy')
 plt.plot(history.history['val_accuracy'], label ='val accuracy')
 plt.legend()
 plt.savefig("resnet/resnetaccuracy.pdf", format="pdf", bbox_inches="tight")
+"""
