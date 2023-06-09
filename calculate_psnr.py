@@ -62,6 +62,9 @@ def main():
 
     group_data = [values for key, values in psnr_dict.items()]
 
+    print(psnr_dict)
+    print(group_data)
+
     # Create a box plot
     fig, ax = plt.subplots()
     ax.boxplot(group_data)
