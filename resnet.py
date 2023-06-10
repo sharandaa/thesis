@@ -13,8 +13,8 @@ from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from tensorflow.keras.models import Model
 #import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-seed_num = 36
 
+seed_num = 36
 
 import random as rn
 from tensorflow.compat.v1.keras import backend as K
@@ -101,7 +101,7 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 
 # Set up callbacks to save the best model weights and stop training early if validation loss stops improving
 checkpoint = ModelCheckpoint('best_resnet36test.h5', save_best_only=True, save_weights_only=True, monitor='val_loss', mode='min', verbose=1)
-earlystop = EarlyStopping(monitor='val_loss', mode='min', patience=5, verbose=1)
+earlystop = EarlyStopping(monitor='val_loss', mode='min', patience=10, verbose=1)
 
 history = model.fit_generator(
         train_generator,
