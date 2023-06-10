@@ -19,7 +19,7 @@ from tensorflow.compat.v1.keras import backend as K
 # https://stackoverflow.com/questions/61368342/how-can-i-get-reproducible-results-in-keras-for-a-convolutional-neural-network-u
 #tf.keras.backend.clear_session()
 
-seed_num = 36
+seed_num = 37
 print(seed_num)
 os.environ['PYTHONHASHSEED'] = '0'
 np.random.seed(seed_num)
@@ -102,7 +102,7 @@ model = Model(inputs=vit_model.input, outputs=predictions)
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 # Set up callbacks to save the best model weights and stop training early if validation loss stops improving
-checkpoint = ModelCheckpoint('best_vit36.h5', save_best_only=True, save_weights_only=True, monitor='val_loss', mode='min', verbose=1)
+checkpoint = ModelCheckpoint('best_vit37.h5', save_best_only=True, save_weights_only=True, monitor='val_loss', mode='min', verbose=1)
 earlystop = EarlyStopping(monitor='val_loss', mode='min', patience=10, verbose=1)
 
 history = model.fit_generator(
