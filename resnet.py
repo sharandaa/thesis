@@ -15,20 +15,20 @@ from tensorflow.keras.models import Model
 from sklearn.model_selection import train_test_split
 seed_num = 36
 
-"""
+
 import random as rn
 from tensorflow.compat.v1.keras import backend as K
 # https://stackoverflow.com/questions/61368342/how-can-i-get-reproducible-results-in-keras-for-a-convolutional-neural-network-u
-tf.keras.backend.clear_session()
+#tf.keras.backend.clear_session()
 
 os.environ['PYTHONHASHSEED'] = '0'
 np.random.seed(seed_num)
 rn.seed(seed_num)
 tf.random.set_seed(seed_num)
-session_conf = tf.compat.v1.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
-sess = tf.compat.v1.Session(graph=tf.compat.v1.get_default_graph(), config=session_conf)
-K.set_session(sess)
-"""
+#session_conf = tf.compat.v1.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
+#sess = tf.compat.v1.Session(graph=tf.compat.v1.get_default_graph(), config=session_conf)
+#K.set_session(sess)
+
 
 # reading CSV file
 data = pd.read_csv("/scratch/s2630575/thesis/labels/train_labels.csv")
@@ -62,7 +62,7 @@ train_generator = train_datagen.flow_from_dataframe(
     x_col='filename',
     y_col='label',
     target_size=(224, 224),
-    batch_size=32,
+    batch_size=64,
     class_mode='categorical',
     seed=seed_num
 )
@@ -73,7 +73,7 @@ validation_generator = valid_datagen.flow_from_dataframe(
     x_col='filename',
     y_col='label',
     target_size=(224, 224),
-    batch_size=32,
+    batch_size=64,
     class_mode='categorical',
     seed=seed_num
 )
@@ -100,7 +100,7 @@ model = Model(inputs=base_model.input, outputs=predictions)
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 # Set up callbacks to save the best model weights and stop training early if validation loss stops improving
-checkpoint = ModelCheckpoint('best_resnet36.h5', save_best_only=True, save_weights_only=True, monitor='val_loss', mode='min', verbose=1)
+checkpoint = ModelCheckpoint('best_resnet36test.h5', save_best_only=True, save_weights_only=True, monitor='val_loss', mode='min', verbose=1)
 earlystop = EarlyStopping(monitor='val_loss', mode='min', patience=5, verbose=1)
 
 history = model.fit_generator(
