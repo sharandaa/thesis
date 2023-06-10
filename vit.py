@@ -25,9 +25,6 @@ os.environ['PYTHONHASHSEED'] = '0'
 np.random.seed(seed_num)
 rn.seed(seed_num)
 tf.random.set_seed(seed_num)
-#session_conf = tf.compat.v1.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
-#sess = tf.compat.v1.Session(graph=tf.compat.v1.get_default_graph(), config=session_conf)
-#K.set_session(sess)
 
 print(os.getcwd())
 # reading CSV file
