@@ -14,7 +14,7 @@ from tensorflow.keras.models import Model
 #import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
-seed_num = 37
+seed_num = 35
 
 import random as rn
 from tensorflow.compat.v1.keras import backend as K
@@ -100,7 +100,7 @@ model = Model(inputs=base_model.input, outputs=predictions)
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 # Set up callbacks to save the best model weights and stop training early if validation loss stops improving
-checkpoint = ModelCheckpoint('best_resnet37.h5', save_best_only=True, save_weights_only=True, monitor='val_loss', mode='min', verbose=1)
+checkpoint = ModelCheckpoint('best_resnet35.h5', save_best_only=True, save_weights_only=True, monitor='val_loss', mode='min', verbose=1)
 earlystop = EarlyStopping(monitor='val_loss', mode='min', patience=10, verbose=1)
 
 history = model.fit_generator(
