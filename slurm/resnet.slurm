@@ -4,4 +4,4 @@
 #SBATCH --partition=graceTST
 
 cd ..
-python -u resnet.py> /scratch/s2630575/logs/python_output/resnet36.txt
+python -u resnet.py> /scratch/s2630575/logs/python_output/resnet36test.txt
