@@ -4,4 +4,4 @@
 #SBATCH --partition=graceADA
 
 cd ..
-python -u resnetpredict.py> /scratch/s2630575/logs/python_output/resnet37predict.txt
+python -u resnetpredict.py> /scratch/s2630575/logs/python_output/resnet36predict.txt

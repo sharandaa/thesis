@@ -60,7 +60,7 @@ for key, value in testimg.items():
     # Compile the model
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-    model.load_weights("/scratch/s2630575/thesis/best_resnet37.h5")
+    model.load_weights("/scratch/s2630575/thesis/best_resnet36.h5")
 
     prediction = model.predict(test_set)
 
@@ -72,8 +72,8 @@ for key, value in testimg.items():
     # Use the array elements as keys to retrieve their corresponding values (labels)
     pred_labels = [labels_reverse[i] for i in predictiontop1]
 
-    print(pred_labels)
-    print(true_labels)
+    #print(pred_labels)
+    #print(true_labels)
 
     from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
 
@@ -106,4 +106,4 @@ for key, value in testimg.items():
     print('top 5 accuracy:', top5_accuracy)
 
     class_report = classification_report(true_labels, pred_labels)
-    print(class_report)
+    #print(class_report)
