@@ -19,7 +19,7 @@ crop_size = 600
 upscale_factor = 3
 input_size = crop_size // upscale_factor
 batch_size = 32
-root_dir = "/scratch/s2630575/train_all"
+root_dir = "/home/s2630575/train_all"
 seed_num = 35
 
 np.random.seed(seed_num)
@@ -56,8 +56,8 @@ valid_ds = valid_ds.map(scaling)
 
 test_img_paths = sorted(
     [
-        os.path.join("/scratch/s2630575/thesis/test_AID", fname)
-        for fname in os.listdir("/scratch/s2630575/thesis/test_AID")
+        os.path.join("/home/s2630575/sshthesis/thesis/test_AID", fname)
+        for fname in os.listdir("/home/s2630575/sshthesis/thesis/test_AID")
         if fname.endswith(".jpg")
     ]
 )
