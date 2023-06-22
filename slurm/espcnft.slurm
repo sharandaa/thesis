@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=espcnft
-#SBATCH --output=/scratch/s2630575/logs/slurm/espcnft.out
+#SBATCH --output=/scratch/s2630575/logs/slurm/espcnftx3_36.out
 #SBATCH --partition=graceADA
 
 cd ..
-python -u finetune_espcn.py> /scratch/s2630575/logs/python_output/espcnft.txt
+python -u finetune_espcn.py> /scratch/s2630575/logs/python_output/espcnftx3_36.txt
