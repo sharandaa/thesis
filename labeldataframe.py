@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 #img_dir = r"C:\Users\shara\OneDrive\Documents\Scriptie\datasets\train_AID"
-img_dir = "/home/s2630575/Real-ESRGAN/results/realx2"
+img_dir = "/scratch/s2630575/datasets/finetuned_espcn"
 
 label_dict = {'filename': [], 'label': []}
 
@@ -16,4 +16,4 @@ df = pd.DataFrame.from_dict(label_dict)
 print(df.head())
 #print(df)
 
-df.to_csv("/scratch/s2630575/labels/test_labels_realesrgan.csv", index = False)
+df.to_csv("/scratch/s2630575/labels/test_labels_finetuned_espcn.csv", index = False)
