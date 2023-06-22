@@ -2,9 +2,9 @@ import os
 import shutil
 
 # Set the directory paths
-folder1 = '../thesis_train/train_AID'
-folder2 = '../thesis_train2/train_AID2'
-output_folder = '../train_all'
+folder1 = '../../thesis_train/train_AID'
+folder2 = '../../thesis_train2/train_AID2'
+output_folder = '../../train_all'
 
 # Loop through the files in the first folder
 for filename in os.listdir(folder1):
