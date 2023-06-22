@@ -16,11 +16,11 @@ from huggingface_hub import from_pretrained_keras
 model = from_pretrained_keras("keras-io/super-resolution")
 
 crop_size = 600
-upscale_factor = 3
+upscale_factor = 2
 input_size = crop_size // upscale_factor
 batch_size = 32
 root_dir = "/scratch/s2630575/train_all"
-seed_num = 37
+seed_num = 35
 
 np.random.seed(seed_num)
 tf.random.set_seed(seed_num)
@@ -176,7 +176,7 @@ class ESPCNCallback(keras.callbacks.Callback):
 early_stopping_callback = keras.callbacks.EarlyStopping(monitor="loss", mode="min", patience=10)
 
 model_checkpoint_callback = keras.callbacks.ModelCheckpoint(
-    'finetuned_espcn_x3_37.h5',
+    'finetuned_espcn_x2_35.h5',
     save_weights_only=True,
     monitor="loss",
     mode="min",
