@@ -18,7 +18,10 @@ testimg = {"/scratch/s2630575/thesis/test_AID":"/scratch/s2630575/thesis/labels/
            "/home/s2630575/espcnres/ESPCN_real_x2":"/scratch/s2630575/thesis/labels/test_labels.csv", 
            "/home/s2630575/SwinIR/results/swinir_real_sr_x2":"/scratch/s2630575/labels/test_labels_swinir.csv", 
            "/home/s2630575/swin2sr/results/swin2sr_real_sr_x4":"/scratch/s2630575/labels/test_labels_swin2sr.csv", 
-           "/home/s2630575/Real-ESRGAN/results/realx2":"/scratch/s2630575/labels/test_labels_realesrgan.csv"}
+           "/home/s2630575/Real-ESRGAN/results/realx2":"/scratch/s2630575/labels/test_labels_realesrgan.csv",
+           "/scratch/s2630575/datasets/finetuned_espcn":"/scratch/s2630575/labels/test_labels_finetuned_espcn.csv"}
+
+testimg = {"/scratch/s2630575/datasets/finetuned_espcn":"/scratch/s2630575/labels/test_labels_finetuned_espcn.csv"}
 
 num_classes = 30
 
