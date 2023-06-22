@@ -20,6 +20,10 @@ upscale_factor = 3
 input_size = crop_size // upscale_factor
 batch_size = 32
 root_dir = "/scratch/s2630575/train_all"
+seed_num = 35
+
+np.random.seed(seed_num)
+tf.random.set_seed(seed_num)
 
 train_ds = image_dataset_from_directory(
     root_dir,
@@ -27,7 +31,7 @@ train_ds = image_dataset_from_directory(
     image_size=(crop_size, crop_size),
     validation_split=0.2,
     subset="training",
-    seed=22,
+    seed=seed_num,
     label_mode=None,
 )
 
@@ -37,7 +41,7 @@ valid_ds = image_dataset_from_directory(
     image_size=(crop_size, crop_size),
     validation_split=0.2,
     subset="validation",
-    seed=22,
+    seed=seed_num,
     label_mode=None,
 )
 
@@ -172,7 +176,7 @@ class ESPCNCallback(keras.callbacks.Callback):
 early_stopping_callback = keras.callbacks.EarlyStopping(monitor="loss", mode="min", patience=10)
 
 model_checkpoint_callback = keras.callbacks.ModelCheckpoint(
-    'finetuned_espcn.h5',
+    'finetuned_espcn_x3_35.h5',
     save_weights_only=True,
     monitor="loss",
     mode="min",
@@ -183,7 +187,7 @@ callbacks = [ESPCNCallback(), early_stopping_callback, model_checkpoint_callback
 loss_fn = keras.losses.MeanSquaredError()
 optimizer = keras.optimizers.Adam(learning_rate=0.001)
 
-epochs = 35
+epochs = 50
 
 model.compile(
     optimizer=optimizer, loss=loss_fn,
