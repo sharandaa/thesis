@@ -11,8 +11,6 @@ from tensorflow.keras.utils import array_to_img
 from tensorflow.keras.utils import img_to_array
 from tensorflow.keras.preprocessing import image_dataset_from_directory
 
-from IPython.display import display
-
 from huggingface_hub import from_pretrained_keras
 
 from natsort import natsorted
