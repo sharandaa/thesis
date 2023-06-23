@@ -24,7 +24,7 @@ testimg = {"/scratch/s2630575/thesis/test_AID":"/scratch/s2630575/thesis/labels/
            "/home/s2630575/Real-ESRGAN/results/realx2":"/scratch/s2630575/labels/test_labels_realesrgan.csv",
            "/scratch/s2630575/datasets/finetuned_espcn":"/scratch/s2630575/labels/test_labels_finetuned_espcn.csv"}
 
-testimg = {"/scratch/s2630575/datasets/finetuned_espcn":"/scratch/s2630575/labels/test_labels_finetuned_espcn.csv"}
+testimg = {"/scratch/s2630575/datasets/finetuned_espcn":"/scratch/s2630575/thesis/labels/test_labels.csv"}
 
 num_classes = 30
 
