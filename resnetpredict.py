@@ -63,7 +63,7 @@ for key, value in testimg.items():
     # Compile the model
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-    model.load_weights("/scratch/s2630575/thesis/best_resnet35.h5")
+    model.load_weights("/scratch/s2630575/thesis/best_resnet36test.h5")
 
     prediction = model.predict(test_set)
 
