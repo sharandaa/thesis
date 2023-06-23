@@ -4,4 +4,4 @@
 #SBATCH --partition=graceADA
 
 cd ..
-python -u vitpredict.py> /scratch/s2630575/logs/python_output/vitpredict36ft.txt
+python -u vitpredict.py> /scratch/s2630575/logs/python_output/vitpredict35ft.txt
