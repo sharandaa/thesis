@@ -4,4 +4,4 @@
 #SBATCH --partition=graceADA
 
 cd ..
-python -u finetune_espcn.py> /scratch/s2630575/logs/python_output/predictespcnft.txt
+python -u predict_ftespcn.py> /scratch/s2630575/logs/python_output/predictespcnft.txt

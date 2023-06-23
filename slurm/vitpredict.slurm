@@ -4,4 +4,4 @@
 #SBATCH --partition=graceTST
 
 cd ..
-python -u vitpredict.py> /scratch/s2630575/logs/python_output/vitpredict37.txt
+python -u vitpredict.py> /scratch/s2630575/logs/python_output/vitpredict37ft.txt
