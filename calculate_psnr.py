@@ -84,7 +84,8 @@ def main():
     ax.set_xticklabels(psnr_dict.keys())
     #ax.set_xlabel('Groups')
     ax.set_ylabel('PSNR (dB)')
-    ax.set_title('PSNR scores with scale x2')
+    ax.set_title('PSNR scores of scale x2')
+    plt.xticks(rotation = 45)
 
     plt.savefig("psnrplotx2.pdf", format="pdf", bbox_inches="tight")
 
@@ -96,7 +97,8 @@ def main():
     ax.set_xticklabels(ssim_dict.keys())
     #ax.set_xlabel('Groups')
     ax.set_ylabel('SSIM')
-    ax.set_title('SSIM scores with scale x2')
+    ax.set_title('SSIM scores of scale x2')
+    plt.xticks(rotation = 45)
 
     plt.savefig("ssimplotx2.pdf", format="pdf", bbox_inches="tight")
 
