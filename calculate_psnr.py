@@ -16,7 +16,7 @@ names = ['ESPCN', 'Real-ESRGAN', 'SwinIR Classical', 'SwinIR Lightweight', 'Swin
 psnr_dict = {}
 ssim_dict = {}
 
-upsampled_dirs = ['/home/s2630575/thesis/espcnmodel/ESPCN_x2', '/home/s2630575/SwinIR/results/swinir_lightweight_sr_x2']
+upsampled_dirs = ['/home/s2630575/thesis/espcnmodel/ESPCN_x3', '/home/s2630575/SwinIR/results/swinir_lightweight_sr_x3']
 names = ['espcn', 'lightweight swinir x2']
   
 def main():
