@@ -8,15 +8,19 @@ import matplotlib.pyplot as plt
 
 n_image = 1000
 og_dir = 'test_AID'
-upsampled_dirs = ['espcnmodel/ESPCN_x2', '../Real-ESRGAN/results/x2', '../SwinIR/results/swinir_classical_sr_x2', '../swin2sr/results/swin2sr_classical_sr_x2']
-names = ['ESPCN', 'Real-ESRGAN', 'SwinIR', 'Swin2SR']
+upsampled_dirs = ['/home/s2630575/espcnmodel/ESPCN_x2', '/home/s2630575/Real-ESRGAN/results/x2', 
+                  '/home/s2630575/SwinIR/results/swinir_classical_sr_x2', 
+                  '/home/s2630575/SwinIR/results/swinir_lightweight_sr_x2', 
+                  '/home/s2630575/swin2sr/results/swin2sr_classical_sr_x2']
+names = ['ESPCN', 'Real-ESRGAN', 'SwinIR Classical', 'SwinIR Lightweight' 'Swin2SR']
 psnr_dict = {}
+ssim_dict = {}
 
-upsampled_dirs = ['/home/s2630575/SwinIR/results/swinir_lightweight_sr_x2']
-names = ['lightweight swinir x2']
+#upsampled_dirs = ['/home/s2630575/SwinIR/results/swinir_lightweight_sr_x2']
+#names = ['lightweight swinir x2']
   
 def main():
-    for i in range(1):
+    for i in range(5):
         upsampled_dir = upsampled_dirs[i] 
         print(upsampled_dir)
         psnr_list = []
@@ -64,13 +68,15 @@ def main():
         print(total)
 
         psnr_dict[names[i]] = psnr_list
+        ssim_dict[names[i]] = ssim_list
 
     group_data = [values for key, values in psnr_dict.items()]
+    group_data_ssim = [values for key, values in ssim_dict.items()]
 
     #print(psnr_dict)
     #print(group_data)
 
-    # Create a box plot
+    # psnr
     fig, ax = plt.subplots()
     ax.boxplot(group_data)
 
@@ -78,9 +84,21 @@ def main():
     ax.set_xticklabels(psnr_dict.keys())
     #ax.set_xlabel('Groups')
     ax.set_ylabel('PSNR (dB)')
-    ax.set_title('PSNR scores of SR with scale x2')
+    ax.set_title('PSNR scores with scale x2')
 
-    plt.savefig("psnrplot.pdf", format="pdf", bbox_inches="tight")
+    plt.savefig("psnrplotx2.pdf", format="pdf", bbox_inches="tight")
+
+    # ssim
+    fig, ax = plt.subplots()
+    ax.boxplot(group_data_ssim)
+
+    # Add labels and title
+    ax.set_xticklabels(ssim_dict.keys())
+    #ax.set_xlabel('Groups')
+    ax.set_ylabel('SSIM')
+    ax.set_title('SSIM scores with scale x2')
+
+    plt.savefig("ssimplotx2.pdf", format="pdf", bbox_inches="tight")
 
 def single_image():
     og_img = cv2.imread('C:/Users/shara/OneDrive/Documents/Scriptie/AID/mod_AID/all_bicubic_2x_300/airport_24x2.jpg')
