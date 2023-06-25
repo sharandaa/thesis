@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 n_image = 1000
 og_dir = 'test_AID'
-upsampled_dirs = ['/home/s2630575/espcnmodel/ESPCN_x2', '/home/s2630575/Real-ESRGAN/results/x2', 
+upsampled_dirs = ['/home/s2630575/thesis/espcnmodel/ESPCN_x2', '/home/s2630575/Real-ESRGAN/results/x2', 
                   '/home/s2630575/SwinIR/results/swinir_classical_sr_x2', 
                   '/home/s2630575/SwinIR/results/swinir_lightweight_sr_x2', 
                   '/home/s2630575/swin2sr/results/swin2sr_classical_sr_x2']
