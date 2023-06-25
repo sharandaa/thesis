@@ -23,90 +23,98 @@ testimg = {"/scratch/s2630575/thesis/test_AID":"/scratch/s2630575/thesis/labels/
 
 testimg = {"/scratch/s2630575/datasets/finetuned_espcn":"/scratch/s2630575/thesis/labels/test_labels.csv"}
 
+testimg = {"/home/s2630575/SwinIR/results/swinir_lightweight_sr_x2":"/scratch/s2630575/labels/test_labels_swinir.csv",
+           "/home/s2630575/SwinIR/results/swinir_lightweight_sr_x3":"/scratch/s2630575/labels/test_labels_swinir.csv",
+           "/home/s2630575/SwinIR/results/swinir_lightweight_sr_x4":"/scratch/s2630575/labels/test_labels_swinir.csv"}
+
 num_classes = 30
 
-for key, value in testimg.items():
-    print(key)
-    test_data = pd.read_csv(value)
-    true_labels = test_data['label'].tolist()
+resnetmodels = ["/scratch/s2630575/thesis/best_resnet35.h5", "/scratch/s2630575/thesis/best_resnet36.h5", "/scratch/s2630575/thesis/best_resnet37.h5"]
 
-    test_datagen = ImageDataGenerator(
-        rescale = 1./255,
-        preprocessing_function=preprocess_input
-    )
+for resnetmodel in resnetmodels:
+    print(resnetmodel)
+    for key, value in testimg.items():
+        print(key)
+        test_data = pd.read_csv(value)
+        true_labels = test_data['label'].tolist()
 
-    test_set = test_datagen.flow_from_dataframe(
-        dataframe=test_data,  # your training dataframe
-        directory=key,  # directory where your images are located
-        x_col='filename',
-        y_col='label',
-        target_size=(224, 224),
-        batch_size=32,
-        class_mode='categorical',
-        shuffle = False
-    )
+        test_datagen = ImageDataGenerator(
+            rescale = 1./255,
+            preprocessing_function=preprocess_input
+        )
 
-    class_indices = test_set.class_indices
+        test_set = test_datagen.flow_from_dataframe(
+            dataframe=test_data,  # your training dataframe
+            directory=key,  # directory where your images are located
+            x_col='filename',
+            y_col='label',
+            target_size=(224, 224),
+            batch_size=32,
+            class_mode='categorical',
+            shuffle = False
+        )
 
-    base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+        class_indices = test_set.class_indices
 
-    # Add a global average pooling layer and a dense output layer
-    x = base_model.output
-    x = AveragePooling2D(pool_size=(7, 7))(x)
-    x = Flatten()(x)
-    x = Dense(256, activation="relu")(x)
-    x = Dropout(0.5)(x)
-    predictions = Dense(num_classes, activation='softmax')(x)
+        base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
 
-    model = Model(inputs=base_model.input, outputs=predictions)
+        # Add a global average pooling layer and a dense output layer
+        x = base_model.output
+        x = AveragePooling2D(pool_size=(7, 7))(x)
+        x = Flatten()(x)
+        x = Dense(256, activation="relu")(x)
+        x = Dropout(0.5)(x)
+        predictions = Dense(num_classes, activation='softmax')(x)
 
-    # Compile the model
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+        model = Model(inputs=base_model.input, outputs=predictions)
 
-    model.load_weights("/scratch/s2630575/thesis/best_resnet36.h5")
+        # Compile the model
+        model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-    prediction = model.predict(test_set)
+        model.load_weights(resnetmodel)
 
-    predictiontop1 = np.argmax(prediction, axis = 1)
+        prediction = model.predict(test_set)
 
-    # Reverse the key-value pairs of the dictionary
-    labels_reverse = {v: k for k, v in class_indices.items()}
+        predictiontop1 = np.argmax(prediction, axis = 1)
 
-    # Use the array elements as keys to retrieve their corresponding values (labels)
-    pred_labels = [labels_reverse[i] for i in predictiontop1]
+        # Reverse the key-value pairs of the dictionary
+        labels_reverse = {v: k for k, v in class_indices.items()}
 
-    #print(pred_labels)
-    #print(true_labels)
+        # Use the array elements as keys to retrieve their corresponding values (labels)
+        pred_labels = [labels_reverse[i] for i in predictiontop1]
 
-    from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
+        #print(pred_labels)
+        #print(true_labels)
 
-    # compute accuracy
-    accuracy = accuracy_score(true_labels, pred_labels)
-    print('Accuracy:', accuracy)
+        from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
 
-    # compute precision
-    precision = precision_score(true_labels, pred_labels, average='macro')
-    print('Precision:', precision)
+        # compute accuracy
+        accuracy = accuracy_score(true_labels, pred_labels)
+        print('Accuracy:', accuracy)
 
-    # compute recall
-    recall = recall_score(true_labels, pred_labels, average='macro')
-    print('Recall:', recall)
+        # compute precision
+        precision = precision_score(true_labels, pred_labels, average='macro')
+        print('Precision:', precision)
 
-    # compute F1 score
-    f1 = f1_score(true_labels, pred_labels, average='macro')
-    print('F1 score:', f1)
+        # compute recall
+        recall = recall_score(true_labels, pred_labels, average='macro')
+        print('Recall:', recall)
 
-    from sklearn.metrics import top_k_accuracy_score
+        # compute F1 score
+        f1 = f1_score(true_labels, pred_labels, average='macro')
+        print('F1 score:', f1)
 
-    #prediction = model.predict(test_set)
-    predictiontop5 = np.argsort(prediction, axis=1)[:, ::-1]  # Sort the predictions in descending order
+        from sklearn.metrics import top_k_accuracy_score
 
-    # Assuming actual_labels contains the true labels for the test set
-    true_labelsindex = test_set.classes  # Replace with your actual labels
+        #prediction = model.predict(test_set)
+        predictiontop5 = np.argsort(prediction, axis=1)[:, ::-1]  # Sort the predictions in descending order
 
-    # Calculate the top 5 accuracy
-    top5_accuracy = top_k_accuracy_score(true_labelsindex, prediction, k=5)
-    print('top 5 accuracy:', top5_accuracy)
+        # Assuming actual_labels contains the true labels for the test set
+        true_labelsindex = test_set.classes  # Replace with your actual labels
 
-    class_report = classification_report(true_labels, pred_labels)
-    #print(class_report)
+        # Calculate the top 5 accuracy
+        top5_accuracy = top_k_accuracy_score(true_labelsindex, prediction, k=5)
+        print('top 5 accuracy:', top5_accuracy)
+
+        class_report = classification_report(true_labels, pred_labels)
+        #print(class_report)
