@@ -11,13 +11,17 @@ og_dir = 'test_AID'
 upsampled_dirs = ['espcnmodel/ESPCN_x2', '../Real-ESRGAN/results/x2', '../SwinIR/results/swinir_classical_sr_x2', '../swin2sr/results/swin2sr_classical_sr_x2']
 names = ['ESPCN', 'Real-ESRGAN', 'SwinIR', 'Swin2SR']
 psnr_dict = {}
+
+upsampled_dirs = ['/home/s2630575/SwinIR/results/swinir_lightweight_sr_x2']
+names = ['lightweight swinir x2']
   
 def main():
-    for i in range(4):
+    for i in range(1):
         upsampled_dir = upsampled_dirs[i] 
+        print(upsampled_dir)
         psnr_list = []
+        ssim_list = []
         total = 0
-        print("real esrgan x4")
         total_psnr = 0
         total_ssim = 0
         # Get list of files in each folder
@@ -44,6 +48,7 @@ def main():
             gray1 = cv2.cvtColor(og_img, cv2.COLOR_BGR2GRAY)
             gray2 = cv2.cvtColor(up_img, cv2.COLOR_BGR2GRAY)
             ssim_value = ssim(gray1, gray2)
+            ssim_list.append(ssim_value)
             total_ssim += ssim_value
 
             total += 1
@@ -62,8 +67,8 @@ def main():
 
     group_data = [values for key, values in psnr_dict.items()]
 
-    print(psnr_dict)
-    print(group_data)
+    #print(psnr_dict)
+    #print(group_data)
 
     # Create a box plot
     fig, ax = plt.subplots()
