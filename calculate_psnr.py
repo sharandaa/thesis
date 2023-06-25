@@ -12,7 +12,7 @@ upsampled_dirs = ['/home/s2630575/thesis/espcnmodel/ESPCN_x2', '/home/s2630575/R
                   '/home/s2630575/SwinIR/results/swinir_classical_sr_x2', 
                   '/home/s2630575/SwinIR/results/swinir_lightweight_sr_x2', 
                   '/home/s2630575/swin2sr/results/swin2sr_classical_sr_x2']
-names = ['ESPCN', 'Real-ESRGAN', 'SwinIR Classical', 'SwinIR Lightweight' 'Swin2SR']
+names = ['ESPCN', 'Real-ESRGAN', 'SwinIR Classical', 'SwinIR Lightweight', 'Swin2SR']
 psnr_dict = {}
 ssim_dict = {}
 
