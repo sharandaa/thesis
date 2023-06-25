@@ -4,4 +4,4 @@
 #SBATCH --partition=graceTST
 
 cd ..
-python -u calculate_psnr.py> /scratch/s2630575/logs/python_output/psnrssimx2.txt
+python -u calculate_psnr.py> /scratch/s2630575/logs/python_output/lightweightx2.txt

@@ -16,11 +16,11 @@ names = ['ESPCN', 'Real-ESRGAN', 'SwinIR Classical', 'SwinIR Lightweight', 'Swin
 psnr_dict = {}
 ssim_dict = {}
 
-#upsampled_dirs = ['/home/s2630575/SwinIR/results/swinir_lightweight_sr_x2']
-#names = ['lightweight swinir x2']
+upsampled_dirs = ['/home/s2630575/thesis/espcnmodel/ESPCN_x2', '/home/s2630575/SwinIR/results/swinir_lightweight_sr_x2']
+names = ['espcn', 'lightweight swinir x2']
   
 def main():
-    for i in range(5):
+    for i in range(2):
         upsampled_dir = upsampled_dirs[i] 
         print(upsampled_dir)
         psnr_list = []
@@ -73,7 +73,7 @@ def main():
     group_data = [values for key, values in psnr_dict.items()]
     group_data_ssim = [values for key, values in ssim_dict.items()]
 
-    #print(psnr_dict)
+    print(psnr_dict)
     #print(group_data)
 
     # psnr
