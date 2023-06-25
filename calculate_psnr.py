@@ -73,7 +73,10 @@ def main():
     group_data = [values for key, values in psnr_dict.items()]
     group_data_ssim = [values for key, values in ssim_dict.items()]
 
+    print('psnr dict')
     print(psnr_dict)
+    print('ssim dict')
+    print(ssim_dict)
     #print(group_data)
 
     # psnr
