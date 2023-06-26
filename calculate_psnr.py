@@ -41,7 +41,7 @@ def main():
             og_img = cv2.imread(os.path.join(og_dir, file1))
             up_img = cv2.imread(os.path.join(upsampled_dir, file2))
             
-            print(file1, file2)
+            #print(file1, file2)
             score = cv2.PSNR(og_img, up_img)
             #print(score)
             psnr_list.append(score)
