@@ -40,6 +40,8 @@ def main():
         for file1, file2 in zip(og_files, upsampled_files):
             og_img = cv2.imread(os.path.join(og_dir, file1))
             up_img = cv2.imread(os.path.join(upsampled_dir, file2))
+            h, w, c = up_img.shape
+            print(f"Height and width of new image: {h}, {w}" )
             
             #print(file1, file2)
             score = cv2.PSNR(og_img, up_img)
