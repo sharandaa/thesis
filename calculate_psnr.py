@@ -8,19 +8,19 @@ import matplotlib.pyplot as plt
 
 n_image = 1000
 og_dir = 'test_AID'
-upsampled_dirs = ['/home/s2630575/thesis/espcnmodel/ESPCN_x2', '/home/s2630575/Real-ESRGAN/results/x2', 
-                  '/home/s2630575/SwinIR/results/swinir_classical_sr_x2', 
-                  '/home/s2630575/SwinIR/results/swinir_lightweight_sr_x2', 
-                  '/home/s2630575/swin2sr/results/swin2sr_classical_sr_x2']
+upsampled_dirs = ['/home/s2630575/thesis/espcnmodel/ESPCN_x4', '/home/s2630575/Real-ESRGAN/results/x4', 
+                  '/home/s2630575/SwinIR/results/swinir_classical_sr_x4', 
+                  '/home/s2630575/SwinIR/results/swinir_lightweight_sr_x4', 
+                  '/home/s2630575/swin2sr/results/swin2sr_classical_sr_x4']
 names = ['ESPCN', 'Real-ESRGAN', 'SwinIR Classical', 'SwinIR Lightweight', 'Swin2SR']
 psnr_dict = {}
 ssim_dict = {}
 
-upsampled_dirs = ['/home/s2630575/thesis/espcnmodel/ESPCN_x3', '/home/s2630575/SwinIR/results/swinir_lightweight_sr_x3']
-names = ['espcn', 'lightweight swinir x2']
+#upsampled_dirs = ['/home/s2630575/thesis/espcnmodel/ESPCN_x3', '/home/s2630575/SwinIR/results/swinir_lightweight_sr_x3']
+#names = ['espcn', 'lightweight swinir x2']
   
 def main():
-    for i in range(2):
+    for i in range(5):
         upsampled_dir = upsampled_dirs[i] 
         print(upsampled_dir)
         psnr_list = []
@@ -87,10 +87,10 @@ def main():
     ax.set_xticklabels(psnr_dict.keys())
     #ax.set_xlabel('Groups')
     ax.set_ylabel('PSNR (dB)')
-    ax.set_title('PSNR scores of scale x2')
+    ax.set_title('PSNR scores of scale x4')
     plt.xticks(rotation = 45)
 
-    plt.savefig("psnrplotx2.pdf", format="pdf", bbox_inches="tight")
+    plt.savefig("psnrplotx4.pdf", format="pdf", bbox_inches="tight")
 
     # ssim
     fig, ax = plt.subplots()
@@ -103,7 +103,7 @@ def main():
     ax.set_title('SSIM scores of scale x2')
     plt.xticks(rotation = 45)
 
-    plt.savefig("ssimplotx2.pdf", format="pdf", bbox_inches="tight")
+    plt.savefig("ssimplotx4.pdf", format="pdf", bbox_inches="tight")
 
 def single_image():
     og_img = cv2.imread('C:/Users/shara/OneDrive/Documents/Scriptie/AID/mod_AID/all_bicubic_2x_300/airport_24x2.jpg')
