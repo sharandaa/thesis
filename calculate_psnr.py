@@ -100,7 +100,7 @@ def main():
     ax.set_xticklabels(ssim_dict.keys())
     #ax.set_xlabel('Groups')
     ax.set_ylabel('SSIM')
-    ax.set_title('SSIM scores of scale x2')
+    ax.set_title('SSIM scores of scale x4')
     plt.xticks(rotation = 45)
 
     plt.savefig("ssimplotx4.pdf", format="pdf", bbox_inches="tight")
