@@ -55,8 +55,7 @@ def upscale_image(model, img):
     return out_img
 
 # The model weights (that are considered the best) are loaded into the model.
-model.load_weights("finetuned_espcn_x3_35.h5")
-
+model.load_weights("finetuned_espcn_x3_36.h5")
 
 highres_img_paths = sorted(
     [
@@ -67,7 +66,7 @@ highres_img_paths = sorted(
 )
 print(highres_img_paths[0])
 
-output_folder = '/scratch/s2630575/datasets/finetuned_espcn_x3'
+output_folder = '/scratch/s2630575/datasets/finetuned_espcn_x3_36'
 upscale_factor = 3
 
 for index, highres_img_path in enumerate(highres_img_paths):
