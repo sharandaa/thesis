@@ -113,7 +113,9 @@ def main():
     plt.savefig("ssimplotx2.pdf", format="pdf", bbox_inches="tight")
 
 def x3plot():
-    finetuned_dirs = ['d', 'd', 'd']
+    finetuned_dirs = ['/scratch/s2630575/datasets/finetuned_espcn_x3', 
+                      '/scratch/s2630575/datasets/finetuned_espcn_x3_36', 
+                      '/scratch/s2630575/datasets/finetuned_espcn_x3_37']
     psnr_list_ft = []
     ssim_list_ft = []
 
