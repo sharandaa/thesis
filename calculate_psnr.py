@@ -88,7 +88,7 @@ def main():
     #ax.set_xlabel('Groups')
     ax.set_ylabel('PSNR (dB)')
     ax.set_title('PSNR scores of scale x4')
-    plt.xticks(rotation = 45)
+    plt.xticks(rotation = 45, fontsize=15)
 
     plt.savefig("psnrplotx4.pdf", format="pdf", bbox_inches="tight")
 
@@ -101,7 +101,7 @@ def main():
     #ax.set_xlabel('Groups')
     ax.set_ylabel('SSIM')
     ax.set_title('SSIM scores of scale x4')
-    plt.xticks(rotation = 45)
+    plt.xticks(rotation = 45, fontsize=15)
 
     plt.savefig("ssimplotx4.pdf", format="pdf", bbox_inches="tight")
 
