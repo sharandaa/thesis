@@ -60,14 +60,14 @@ model.load_weights("finetuned_espcn_x3_35.h5")
 
 highres_img_paths = sorted(
     [
-        os.path.join("/scratch/s2630575/thesis/test_AID", fname)
-        for fname in os.listdir("/scratch/s2630575/thesis/test_AID")
+        os.path.join("/scratch/s2630575/thesis/test_AID_x3", fname)
+        for fname in os.listdir("/scratch/s2630575/thesis/test_AID_x3")
         if fname.endswith(".jpg")
     ]
 )
 print(highres_img_paths[0])
 
-output_folder = '/scratch/s2630575/datasets/finetuned_espcn'
+output_folder = '/scratch/s2630575/datasets/finetuned_espcn_x3'
 upscale_factor = 3
 
 for index, highres_img_path in enumerate(highres_img_paths):
